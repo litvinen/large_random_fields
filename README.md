@@ -8,12 +8,19 @@ generate.cc is needed to generate "the truth"
 loglikelihood4.cc is needed to identify 4 unknown parameters of the Matern   
 
 Copy  
-generate.cc and loglikelihood4.cc to /hlibpro-2.9/examples/.  
+
+generate.cc and loglikelihood4.cc to /hlibpro-2.9/examples/  
+
 cd examples  
+
  vi SConscript  
+ 
  and modify it by adding 
+ 
  examples.append( cxxenv.Program( 'generate.cc' ) ) 
- examples.append( cxxenv.Program( 'loglikelihood4.cc' ) ) 
+ 
+ examples.append( cxxenv.Program( 'loglikelihood4.cc' ) )  
+ 
  cd .. 
  scons 
  cd examples 
