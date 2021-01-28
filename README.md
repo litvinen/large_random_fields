@@ -1,5 +1,12 @@
 # large_random_fields
-Generate large Matern random fields, identify unknown parameters (variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2)\
+
+developed by Alexander Litvinenko, RWTH Aachen, Germany 
+and Ronald Kriemann, MIS MPI Leipzig, Germany (www.hlibpro.com)
+
+With this package you can generate large Matern random fields, identify unknown parameters 
+(variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2).
+
+To install and run please follow these steps:
 
 Install HLIBPro v2.9 from www.hlibpro.com  
 Example 1:  
@@ -73,4 +80,17 @@ As a result four unknown parameters will be identified. They should be very clos
   
   double  tau    = 0.0;  
   
+  
+  Example 2:
+  To predict unknown values of a random field in some new locations run: 
+  
+   $ ./prediction --dataL dataset2_training.csv --dataT dataset2_testing.csv 
+   
+   $ ./prediction --dataL dataset2_training.csv --dataT dataset2_testing.csv --ldl
+   
+   Here dataset2_training.csv contains the learning dataset (3 columsn, x,y,values) and 
+   dataset2_testing.csv  (two columns, x,y ) contains the set of locations where the random field should be forecasted.
+   
+   
+
 
