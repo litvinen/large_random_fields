@@ -2,6 +2,18 @@
 
 developed by Alexander Litvinenko, RWTH Aachen, Germany 
 and Ronald Kriemann, MIS MPI Leipzig, Germany (www.hlibpro.com)
+Theory is here
+
+1) HLIBCov: Parallel hierarchical matrix approximation of large covariance matrices and likelihoods with applications in parameter identification
+AlexanderLitvinenko, Ronald Kriemann, Marc G.Genton, Ying Sun, David E.Keyes,
+MethodsX
+Volume 7, 2020, 100600
+https://www.sciencedirect.com/science/article/pii/S2215016119301761
+
+2) Likelihood approximation with hierarchical matrices for large spatial datasets,
+AlexanderLitvinenko, Ying Sun, Marc G. Genton, David E.Keyes, Computational Statistics & Data Analysis
+Volume 137, September 2019, Pages 115-132,
+https://www.sciencedirect.com/science/article/pii/S0167947319300374 
 
 With this package you can generate large Matern random fields, identify unknown parameters 
 (variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2).
