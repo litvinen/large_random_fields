@@ -86,6 +86,8 @@ As a result four unknown parameters will be identified. They should be very clos
   
    $ ./prediction --dataL dataset2_training.csv --dataT dataset2_testing.csv 
    
+   or
+   
    $ ./prediction --dataL dataset2_training.csv --dataT dataset2_testing.csv --ldl
    
    Here dataset2_training.csv contains the learning dataset (3 columsn, x,y,values) and 
