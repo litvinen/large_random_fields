@@ -1,23 +1,23 @@
 # large_random_fields
-Generate large Matern random fields, identify unknown parameters (variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2)
+Generate large Matern random fields, identify unknown parameters (variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2)\
 
-Install HLIBPro v2.9 from www.hlibpro.com
-Example 1:
+Install HLIBPro v2.9 from www.hlibpro.com \
+Example 1: \
 
-generate.cc is needed to generate "the truth"
-loglikelihood4.cc is needed to identify 4 unknown parameters of the Matern 
+generate.cc is needed to generate "the truth" \
+loglikelihood4.cc is needed to identify 4 unknown parameters of the Matern  \
 
-Copy 
-generate.cc and loglikelihood4.cc to /hlibpro-2.9/examples/
-cd examples
- vi SConscript 
- and modify it by adding 
- examples.append( cxxenv.Program( 'generate.cc' ) )
- examples.append( cxxenv.Program( 'loglikelihood4.cc' ) )
- cd ..
- scons
- cd examples
- and run
+Copy \
+generate.cc and loglikelihood4.cc to /hlibpro-2.9/examples/. \
+cd examples \
+ vi SConscript \
+ and modify it by adding \
+ examples.append( cxxenv.Program( 'generate.cc' ) ) \
+ examples.append( cxxenv.Program( 'loglikelihood4.cc' ) ) \
+ cd .. \
+ scons \
+ cd examples \
+ and run \
 
 ./generate --data S1b_short_dataset1_training.csv 
 As a result a new file 111gen_d.txt is generated.
