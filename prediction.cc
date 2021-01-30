@@ -1,3 +1,9 @@
+// Run like this
+//./prediction --dataL competition/S1a/dataset6_training.csv --dataT competition/S1b/dataset6_testing.csv --sigma=1.14683 --length=0.0825932 --nu=0.600677 --tau=3.49e-14 --ldl
+// Developed by Alexander Litvinenko (RWTH Aachen) and Ronald Kriemann (MIS MPG Leipzig)
+// Based on the HLIBPro library (v. 2.9) www.hlibpro.com
+// No warranties.
+
 #include <iostream>
 #include <fstream>
 #include <string>

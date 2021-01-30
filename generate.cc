@@ -1,3 +1,11 @@
+
+// Run like this
+//./generate --data competition/S1a/S1b_short_dataset1_training.csv 
+// This code will forecast 4 unknown parameters of the Matern covariance matrix
+// Developed by Alexander Litvinenko (RWTH Aachen) and Ronald Kriemann (MIS MPG Leipzig)
+// Based on the HLIBPro library (v. 2.9) www.hlibpro.com
+// No warranties.
+
 #include <iostream>
 #include <fstream>
 #include <string>

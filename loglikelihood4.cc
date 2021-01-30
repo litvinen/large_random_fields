@@ -1,3 +1,9 @@
+// Run like this
+// ./loglikelihood4 competition/S1a/dataset13_training.csv  --use_ldl
+// This code will forecast 4 unknown parameters of the Matern covariance matrix
+// Developed by Alexander Litvinenko (RWTH Aachen) and Ronald Kriemann (MIS MPG Leipzig)
+// Based on the HLIBPro library (v. 2.9) www.hlibpro.com
+// No warranties.
 #include <iostream>
 #include <fstream>
 #include <string>
