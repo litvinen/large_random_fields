@@ -1,8 +1,9 @@
 # large_random_fields
 
-developed by Alexander Litvinenko, RWTH Aachen, Germany 
+developed by Alexander Litvinenko, RWTH Aachen, Germany, 
 and Ronald Kriemann, MIS MPI Leipzig, Germany (www.hlibpro.com)
-Theory is here
+
+The theory is described here
 
 1) HLIBCov: Parallel hierarchical matrix approximation of large covariance matrices and likelihoods with applications in parameter identification
 AlexanderLitvinenko, Ronald Kriemann, Marc G.Genton, Ying Sun, David E.Keyes,
@@ -24,11 +25,14 @@ Install HLIBPro v2.9 from www.hlibpro.com
 Example 1:  
   
 generate.cc is needed to generate "the truth"  
-loglikelihood4.cc is needed to identify 4 unknown parameters of the Matern   
+loglikelihood4.cc is needed to identify 4 unknown parameters of the Matern covariaance matrix
 
-Copy  
+To try follow please the follwoing steps
 
-generate.cc and loglikelihood4.cc to /hlibpro-2.9/examples/  
+Download and install HLIBPro from www.hlibpro.com. It shouldgo very fast (1 minute).
+
+
+Copy generate.cc, prediction.cc and loglikelihood4.cc to /hlibpro-2.9/examples/  
 
 cd examples  
 
@@ -37,6 +41,8 @@ cd examples
  and modify it by adding 
  
  examples.append( cxxenv.Program( 'generate.cc' ) ) 
+ 
+ examples.append( cxxenv.Program( 'prediction.cc' ) ) 
  
  examples.append( cxxenv.Program( 'loglikelihood4.cc' ) )  
  
@@ -105,6 +111,6 @@ As a result four unknown parameters will be identified. They should be very clos
    Here dataset2_training.csv contains the learning dataset (3 columsn, x,y,values) and 
    dataset2_testing.csv  (two columns, x,y ) contains the set of locations where the random field should be forecasted.
    
-   
+   $  ./prediction --dataL competition/S1a/dataset8_training.csv --dataT competition/S1b/dataset8_testing.csv --sigma=1.09429 --length=0.204309 --nu=0.60055 --tau=6.373e-9 --ldl
 
 
