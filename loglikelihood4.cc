@@ -24,8 +24,8 @@ enum {
 
 // global options
 int        nmin      = CFG::Cluster::nmin;
-double     eps       = 1e-5;
-double     fac_eps   = 1e-5;
+double     eps       = 1e-6;
+double     fac_eps   = 1e-6;
 double     shift     = 1e-8;
 bool       use_ldl   = false;
 
@@ -179,11 +179,11 @@ struct LogLikeliHoodProblem
     
         auto                          C        = h_builder.build( bct.get(), acc );
 
-       // if ( shift != 0.0 )
-       // {
+        if ( shift != 0.0 )
+        {
            // std::cout << "Diagonal is added!!!!!!!!!!" << std::endl;
-       //     add_identity( C.get(), 1/pow(2.0,tau) );
-       // }
+            add_identity( C.get(), 1/pow(2.0,tau) );
+        }
 
         auto                          fac_acc  = fixed_prec( fac_eps );
         auto                          C_fac    = C->copy();
@@ -297,14 +297,14 @@ maximize_likelihood ( double &                sigma,
             break;
 
         size   = gsl_multimin_fminimizer_size( s );    // return eps for stopping criteria
-        status = gsl_multimin_test_size( size, 5e-3 ); // This function tests the minimizer specific characteristic size 
+        status = gsl_multimin_test_size( size, 1e-3 ); // This function tests the minimizer specific characteristic size 
 
         if ( status == GSL_SUCCESS )
         {
             std::cout << "converged to minimum" << std::endl;
             FILE* f4 = fopen( "111_S2b_results.txt", "a+");
            // fprintf(f4, "sigma, ell, nu, tau\n"); //2.0/pow(1.1,sigma), 1.0/pow(1.5,length), 1.0/pow(1.2, nu),
-            fprintf(f4, "& %2.4e & %2.4e & %2.4e & %2.4e & %2.4e \\\\ \\hline \n", 2.0/pow(1.1, sigma), 1.0/pow(1.5,length), 1.0/pow(1.2,nu), 1.0/pow(2.0, tau), LL );
+            fprintf(f4, "& %.6f & %.6f & %.6f & %.6f & %.6f \\\\ \\hline \n", 2.0/pow(1.1, sigma), 1.0/pow(1.5,length), 1.0/pow(1.2,nu), 1.0/pow(2.0, tau), LL );
             fclose(f4);
         }
 
@@ -340,6 +340,11 @@ main ( int      argc,
     INIT();
     
     std::string  datafile = "datafile.txt";
+    //Important ! sigma= 2.0/pow(1.1,sigma), length = 1.0/pow(1.5,length), 1.0/pow(1.2, nu),
+    double  sigma  = 1.0; //take these values from previous experiments (Part 1a)
+    double  length = 7.0; //means, cov length = 1/pow(1.5, 7)
+    double  nu     = 4.0; //means, nu = 1/pow(1.2, 2)
+    double  tau    = 20;
     
     //
     // define command line options
@@ -361,6 +366,10 @@ main ( int      argc,
         ( "epslu",       value<double>(), ": set only H factorization accuracy" )
         ( "shift",       value<double>(), ": regularization parameter" )
         ( "ldl",                          ": use LDL factorization" )
+        ( "sigma",       value<double>(), ": sigma parameter" )
+        ( "nu",          value<double>(), ": nu parameter" )
+        ( "length",      value<double>(), ": length parameter" )
+        ( "tau",         value<double>(), ": tau paramater" )
         ;
     
     hid_opts.add_options()
@@ -410,6 +419,10 @@ main ( int      argc,
     if ( vm.count( "threads"   ) ) CFG::set_nthreads( vm["threads"].as<int>() );
     if ( vm.count( "verbosity" ) ) CFG::set_verbosity( vm["verbosity"].as<int>() );
     if ( vm.count( "ldl"       ) ) use_ldl  = true;
+    if ( vm.count( "sigma"     ) ) sigma    = vm["sigma"].as<double>();
+    if ( vm.count( "nu"        ) ) nu       = vm["nu"].as<double>();
+    if ( vm.count( "length"    ) ) length   = vm["length"].as<double>();
+    if ( vm.count( "tau"       ) ) tau      = vm["tau"].as<double>();
 
     // default to general eps
     if ( fac_eps == -1 )
@@ -424,12 +437,7 @@ main ( int      argc,
     }// if
 
 
-    //Important ! sigma= 2.0/pow(1.1,sigma), length = 1.0/pow(1.5,length), 1.0/pow(1.2, nu),
-    double  sigma  = 6.0; //take these values from previous experiments (Part 1a)
-    double  length = 6.0; //means, cov length = 1/pow(1.5, length)
-    double  nu     = 4.0; //means, cov length = 1/pow(1.2, nu)
-    double  tau    = 10;
-
+    std::cout << "initial parameters : " << sigma << ", " << nu << ", " << length << ", " << tau << std::endl;
     
     LogLikeliHoodProblem  problem( datafile );
 

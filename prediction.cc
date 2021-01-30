@@ -26,7 +26,7 @@ enum {
 int        nmin      = CFG::Cluster::nmin;
 double     eps       = 1e-6;
 double     fac_eps   = 1e-6;
-double     shift     = 0.0;
+double     shift     = 1e-7;
 bool       use_ldl   = false;
 
 //
@@ -338,7 +338,7 @@ struct PredictionProblem
 
         f1 = fopen("111prediction.txt", "w");
         for ( size_t  i = 0; i < Z_predict->size(); i++ )
-          fprintf(f1," %3.6e, %3.6e, %3.6e\n",   vertices_predict[i].x(),  vertices_predict[i].y(), Z_predict->entry(i));
+          fprintf(f1," %.6f, %.6f, %.6f\n",   vertices_predict[i].x(),  vertices_predict[i].y(), Z_predict->entry(i));
         fclose(f1);
         return std::move( Z_predict );
     }
@@ -380,6 +380,11 @@ main ( int      argc,
     //std::string  datafile_predict = "datafile_predict.txt";
     std::string  datafile = "LearningSet.txt";
     std::string  datafile_predict = "TestingSet.txt";
+
+    double  sigma  = 2.7779; //take these values from previous experiments (Part 1a)
+    double  length = 0.07; 
+    double  nu     = 1.0365;
+    double  tau    = 4.2045e-8;
     
     //
     // define command line options
@@ -401,6 +406,10 @@ main ( int      argc,
         ( "epslu",       value<double>(), ": set only H factorization accuracy" )
         ( "shift",       value<double>(), ": regularization parameter" )
         ( "ldl",                          ": use LDL factorization" )
+        ( "sigma",       value<double>(), ": sigma parameter" )
+        ( "nu",          value<double>(), ": nu parameter" )
+        ( "length",      value<double>(), ": length parameter" )
+        ( "tau",         value<double>(), ": tau paramater" )
         ;
     
     hid_opts.add_options()
@@ -452,6 +461,10 @@ main ( int      argc,
     if ( vm.count( "threads"   ) ) CFG::set_nthreads( vm["threads"].as<int>() );
     if ( vm.count( "verbosity" ) ) CFG::set_verbosity( vm["verbosity"].as<int>() );
     if ( vm.count( "ldl"       ) ) use_ldl  = true;
+    if ( vm.count( "sigma"     ) ) sigma    = vm["sigma"].as<double>();
+    if ( vm.count( "nu"        ) ) nu       = vm["nu"].as<double>();
+    if ( vm.count( "length"    ) ) length   = vm["length"].as<double>();
+    if ( vm.count( "tau"       ) ) tau      = vm["tau"].as<double>();
 
     // default to general eps
     if ( fac_eps == -1 )
@@ -473,11 +486,10 @@ main ( int      argc,
         exit( 1 );
     }// if
 
-    double  sigma  = 0.538467; //take these values from previous experiments (Part 1a)
-    double  length = 0.0106; 
-    double  nu     = 2.4705;
-    double  tau    = 1.5837e-7;
    
+    std::cout << "parameters : " << " σ = " << sigma << ", ℓ = " << length << ", ν = " << nu << ", τ = " << tau << std::endl;
+    
+
     PredictionProblem  problem( datafile, datafile_predict );
     problem.eval( sigma, length, nu, tau);
 
