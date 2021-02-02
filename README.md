@@ -2,8 +2,9 @@
 
 developed by Alexander Litvinenko, RWTH Aachen, Germany, 
 and Ronald Kriemann, MIS MPI Leipzig, Germany (www.hlibpro.com)
+January 2021
 
-The theory is described here
+The theory is described here:
 
 1) HLIBCov: Parallel hierarchical matrix approximation of large covariance matrices and likelihoods with applications in parameter identification
 AlexanderLitvinenko, Ronald Kriemann, Marc G.Genton, Ying Sun, David E.Keyes,
@@ -16,12 +17,17 @@ AlexanderLitvinenko, Ying Sun, Marc G. Genton, David E.Keyes, Computational Stat
 Volume 137, September 2019, Pages 115-132,
 https://www.sciencedirect.com/science/article/pii/S0167947319300374 
 
+More details about "KAUST Competition on Spatial Statistics for Large Datasets" is here https://cemse.kaust.edu.sa/stsds/kaust-competition-spatial-statistics-large-datasets
+
 With this package you can generate large Matern random fields, identify unknown parameters 
-(variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2).
+(variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2) simultaneously.
+
+Also you can find procedures: HierarchicalMatrix-vector multiplication, Hierarchical Chiolesky, Computation of the joint Gaussian Loglikelihoood, matrix determinant, hierarchical matrix inverse, soution of a linear system, scalar product.
 
 To install and run please follow these steps:
 
 Install HLIBPro v2.9 from www.hlibpro.com  
+
 Example 1:  
   
 generate.cc is needed to generate "the truth"  
@@ -32,7 +38,7 @@ To try follow please the follwoing steps
 Download and install HLIBPro from www.hlibpro.com. It shouldgo very fast (1 minute).
 
 
-Copy generate.cc, prediction.cc and loglikelihood4.cc to /hlibpro-2.9/examples/  
+Copy generate.cc, prediction.cc and loglikelihood4.cc (and all other dataset files) to /hlibpro-2.9/examples/  
 
 cd examples  
 
