@@ -1,7 +1,7 @@
 # large_random_fields
 
 developed by Alexander Litvinenko, RWTH Aachen, Germany, 
-and Ronald Kriemann, MIS MPI Leipzig, Germany (www.hlibpro.com)
+and Ronald Kriemann, MIS MPI Leipzig, Germany (www.hlibpro.com),  
 January 2021
 
 The theory is described here:
