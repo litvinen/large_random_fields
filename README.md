@@ -22,7 +22,7 @@ More details about "KAUST Competition on Spatial Statistics for Large Datasets" 
 With this package you can generate large Matern random fields, identify unknown parameters 
 (variance, cov. length, smoothness, nugget) = (\sigma, \ell, \nu, \tau^2) simultaneously.
 
-Also you can find procedures: HierarchicalMatrix-vector multiplication, Hierarchical Chiolesky, Computation of the joint Gaussian Loglikelihoood, matrix determinant, hierarchical matrix inverse, soution of a linear system, scalar product.
+Also you can find procedures: HierarchicalMatrix-vector multiplication, hierarchical Chiolesky, computation of the joint Gaussian loglikelihoood, matrix determinant, hierarchical matrix inverse, solution of a linear system, scalar product.
 
 To install and run please follow these steps:
 
@@ -105,7 +105,7 @@ As a result four unknown parameters will be identified. They should be very clos
   double  tau    = 0.0;  
   
   
-  Example 2:
+Example 2:
   To predict unknown values of a random field in some new locations run: 
   
    $ ./prediction --dataL dataset2_training.csv --dataT dataset2_testing.csv 
